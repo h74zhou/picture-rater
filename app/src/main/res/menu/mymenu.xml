@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/refresh"
+        android:icon="@drawable/ic_refresh_white"
+        android:title="Refresh"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item android:id="@+id/clear"
+        android:icon="@drawable/ic_clear"
+        android:title="Clear"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item android:id="@+id/star0"
+        android:icon="@drawable/ic_star"
+        android:title="Any"
+        app:showAsAction="never"
+        >
+    </item>
+
+    <item android:id="@+id/star1"
+        android:icon="@drawable/ic_star"
+        android:title="1 Star"
+        app:showAsAction="never"
+        >
+    </item>
+
+    <item android:id="@+id/star2"
+        android:icon="@drawable/ic_star"
+        android:title="2 Stars"
+        app:showAsAction="never">
+    </item>
+
+    <item android:id="@+id/star3"
+        android:icon="@drawable/ic_star"
+        android:title="3 Stars"
+        app:showAsAction="never">
+    </item>
+
+    <item android:id="@+id/star4"
+        android:icon="@drawable/ic_star"
+        android:title="4 Stars"
+        app:showAsAction="never">
+    </item>
+
+    <item android:id="@+id/star5"
+        android:icon="@drawable/ic_star"
+        android:title="5 Stars"
+        app:showAsAction="never">
+    </item>
+
+
+
+</menu>
