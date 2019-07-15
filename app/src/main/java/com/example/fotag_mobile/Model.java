@@ -1,5 +1,7 @@
 package com.example.fotag_mobile;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.RatingBar;
 
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ public class Model {
     public Boolean onclick = true;
 
     public Boolean currentLoaded = false;
+
+    public Integer filterNumber = 0;
 
     public String popUpURL = "";
 
@@ -58,6 +62,5 @@ public class Model {
     CustomPicture sleepy = new CustomPicture("https://www.student.cs.uwaterloo.ca/~cs349/s19/assignments/images/sleepy.png");
 
     public CustomPicture[] pictures = new CustomPicture[] { bunny, chinchilla, doggo, fox, hamster, husky, kitten, loris, puppy, sleepy};
-
 
 }

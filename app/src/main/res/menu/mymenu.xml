@@ -21,8 +21,8 @@
     </item>
 
     <item android:id="@+id/star1"
-        android:icon="@drawable/ic_star"
-        android:title="1 Star"
+        android:icon="@drawable/ic_star_black"
+        android:title="1 Stars"
         app:showAsAction="never"
         >
     </item>

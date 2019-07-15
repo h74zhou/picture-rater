@@ -1109,37 +1109,37 @@
 
 </RelativeLayout>
 
-<!-- <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="15dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp">
-
-            <LinearLayout
+    <!-- <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="200dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="15dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:scaleType="fitCenter"
-                    android:gravity="center|center_vertical"
-                    android:layout_gravity="center|center_vertical"
-                    android:id = "@+id/cardImage"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:isIndicator="true"
-                    android:numStars="5" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp"
+                        android:scaleType="fitCenter"
+                        android:gravity="center|center_vertical"
+                        android:layout_gravity="center|center_vertical"
+                        android:id = "@+id/cardImage"/>
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
--->
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:isIndicator="true"
+                        android:numStars="5" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+    -->

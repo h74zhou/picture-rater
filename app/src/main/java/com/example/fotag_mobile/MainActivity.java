@@ -1,11 +1,14 @@
 package com.example.fotag_mobile;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -67,6 +70,34 @@ public class MainActivity extends AppCompatActivity {
 
     int[] view_id_array = new int[] {R.id.cardImage1, R.id.cardImage2, R.id.cardImage3, R.id.cardImage4,
             R.id.cardImage5, R.id.cardImage6, R.id.cardImage7, R.id.cardImage8, R.id.cardImage9, R.id.cardImage10};
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        Log.d("ConfigChange", "REACHED HEREkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+        for (int i = 0; i < myModel.pictures.length; ++i) {
+            Log.d("ConfigChange","Num Stars: " + myModel.pictures[i].numStars);
+        }
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.d("Config", "Bunny Stars is: " + myModel.pictures[0].numStars);
+//            setContentView(R.layout.activity_main_land);
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Log.d("Config", "Bunny Stars is: " + myModel.pictures[0].numStars);
+            setContentView(R.layout.activity_main);
+        }
+
+        new DownloadImageFromInternet((ImageView) findViewById(R.id.cardImage1)) .execute(myModel.pictures[0].pictureURL);
+        myModel.onclick = false;
+        myRatingBar1.setRating((float) myModel.pictures[0].numStars);
+        myModel.onclick = true;
+
+//        for (int i = 0; i < myModel.pictures.length; ++i) {
+//            if (myModel.pictures[i].currentLoadValue != 0) {
+//                new DownloadImageFromInternet((ImageView) findViewById(R.id.cardImage1)) .execute(myModel.pictures[i].pictureURL);
+//            }
+//        }
+    }
 
     public void changeNumStars(Integer ratingBar, Integer numStars) {
         if (myModel.onclick) {
@@ -134,12 +165,18 @@ public class MainActivity extends AppCompatActivity {
         clearButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                for (int i = 0; i < myModel.pictures.length; ++i) {
+                    Log.d("SUPER", "Picture" + myModel.pictures[i].pictureURL + " has load value: " + myModel.pictures[i].currentLoadValue);
+                }
                 for (int i = 0; i < myModel.pictures.length; ++i) {
                     if (myModel.pictures[i].currentLoadValue == 2) {
+                        Log.d("Config", "CLEAR BUTTON 2 NOT WORKING");
                         myModel.pictures[i].numStars = 0;
                         myModel.onclick = false;
-                        myRatingBar1.setRating(0F);
+                        myRatingBar2.setRating(0F);
                         myModel.onclick = true;
+                        break;
                     }
                 }
             }
@@ -152,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                     if (myModel.pictures[i].currentLoadValue == 3) {
                         myModel.pictures[i].numStars = 0;
                         myModel.onclick = false;
-                        myRatingBar1.setRating(0F);
+                        myRatingBar3.setRating(0F);
                         myModel.onclick = true;
                     }
                 }
@@ -166,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                     if (myModel.pictures[i].currentLoadValue == 4) {
                         myModel.pictures[i].numStars = 0;
                         myModel.onclick = false;
-                        myRatingBar1.setRating(0F);
+                        myRatingBar4.setRating(0F);
                         myModel.onclick = true;
                     }
                 }
@@ -180,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                     if (myModel.pictures[i].currentLoadValue == 5) {
                         myModel.pictures[i].numStars = 0;
                         myModel.onclick = false;
-                        myRatingBar1.setRating(0F);
+                        myRatingBar5.setRating(0F);
                         myModel.onclick = true;
                     }
                 }
@@ -194,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                     if (myModel.pictures[i].currentLoadValue == 6) {
                         myModel.pictures[i].numStars = 0;
                         myModel.onclick = false;
-                        myRatingBar1.setRating(0F);
+                        myRatingBar6.setRating(0F);
                         myModel.onclick = true;
                     }
                 }
@@ -208,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                     if (myModel.pictures[i].currentLoadValue == 7) {
                         myModel.pictures[i].numStars = 0;
                         myModel.onclick = false;
-                        myRatingBar1.setRating(0F);
+                        myRatingBar7.setRating(0F);
                         myModel.onclick = true;
                     }
                 }
@@ -222,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                     if (myModel.pictures[i].currentLoadValue == 8) {
                         myModel.pictures[i].numStars = 0;
                         myModel.onclick = false;
-                        myRatingBar1.setRating(0F);
+                        myRatingBar8.setRating(0F);
                         myModel.onclick = true;
                     }
                 }
@@ -236,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
                     if (myModel.pictures[i].currentLoadValue == 9) {
                         myModel.pictures[i].numStars = 0;
                         myModel.onclick = false;
-                        myRatingBar1.setRating(0F);
+                        myRatingBar9.setRating(0F);
                         myModel.onclick = true;
                     }
                 }
@@ -250,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
                     if (myModel.pictures[i].currentLoadValue == 10) {
                         myModel.pictures[i].numStars = 0;
                         myModel.onclick = false;
-                        myRatingBar1.setRating(0F);
+                        myRatingBar10.setRating(0F);
                         myModel.onclick = true;
                     }
                 }
@@ -428,7 +465,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 changeNumStars(3, (int) ratingBar.getRating());
-                Log.d("PictureURL2","GOT HERE");
+                Log.d("PictureURL3","GOT HERE");
             }
         });
 
@@ -436,7 +473,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 changeNumStars(4, (int) ratingBar.getRating());
-                Log.d("PictureURL2","GOT HERE");
+                Log.d("PictureURL4","GOT HERE");
             }
         });
 
@@ -444,7 +481,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 changeNumStars(5, (int) ratingBar.getRating());
-                Log.d("PictureURL2","GOT HERE");
+                Log.d("PictureURL5","GOT HERE");
             }
         });
 
@@ -487,6 +524,171 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("PictureURL2","GOT HERE");
             }
         });
+
+    }
+
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Log.d("Config", "REACHED SAVE INSTANCE STATE");
+        Log.d("Config", "Bunny Stars is: " + myModel.pictures[0].numStars);
+
+        int bunnyNumStars = myModel.bunny.numStars;
+        int bunnyLoadValue = myModel.bunny.currentLoadValue;
+
+        outState.putInt("filterN", myModel.filterNumber);
+
+        outState.putInt("bunnyN", bunnyNumStars);
+        outState.putInt("bunnyL", bunnyLoadValue);
+
+        outState.putInt("chinN", myModel.chinchilla.numStars);
+        outState.putInt("chinL", myModel.chinchilla.currentLoadValue);
+
+        outState.putInt("dogN",myModel.doggo.numStars);
+        outState.putInt("dogL",myModel.doggo.currentLoadValue);
+
+        outState.putInt("foxN",myModel.fox.numStars);
+        outState.putInt("foxL",myModel.fox.currentLoadValue);
+
+        outState.putInt("hamN",myModel.hamster.numStars);
+        outState.putInt("hamL",myModel.hamster.currentLoadValue);
+
+        outState.putInt("huskyN",myModel.husky.numStars);
+        outState.putInt("huskyL",myModel.husky.currentLoadValue);
+
+        outState.putInt("kitN",myModel.kitten.numStars);
+        outState.putInt("kitL",myModel.kitten.currentLoadValue);
+
+        outState.putInt("lorN",myModel.loris.numStars);
+        outState.putInt("lorL",myModel.loris.currentLoadValue);
+
+        outState.putInt("pupN",myModel.puppy.numStars);
+        outState.putInt("pupL",myModel.puppy.currentLoadValue);
+
+        outState.putInt("sleepyN",myModel.sleepy.numStars);
+        outState.putInt("sleepyL",myModel.sleepy.currentLoadValue);
+
+
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        myModel.filterNumber = savedInstanceState.getInt("filterN");
+
+        myModel.pictures[0].numStars = savedInstanceState.getInt("bunnyN");;
+        myModel.pictures[0].currentLoadValue = savedInstanceState.getInt("bunnyL");;
+
+        myModel.pictures[1].numStars = savedInstanceState.getInt("chinN");
+        myModel.pictures[1].currentLoadValue = savedInstanceState.getInt("chinL");
+
+        myModel.pictures[2].numStars = savedInstanceState.getInt("dogN");
+        myModel.pictures[2].currentLoadValue = savedInstanceState.getInt("dogL");
+
+        myModel.pictures[3].numStars = savedInstanceState.getInt("foxN");
+        myModel.pictures[3].currentLoadValue = savedInstanceState.getInt("foxL");
+
+        myModel.pictures[4].numStars = savedInstanceState.getInt("hamN");
+        myModel.pictures[4].currentLoadValue = savedInstanceState.getInt("hamL");
+
+        myModel.pictures[5].numStars = savedInstanceState.getInt("huskyN");
+        myModel.pictures[5].currentLoadValue = savedInstanceState.getInt("huskyL");
+
+        myModel.pictures[6].numStars = savedInstanceState.getInt("kitN");
+        myModel.pictures[6].currentLoadValue = savedInstanceState.getInt("kitL");
+
+        myModel.pictures[7].numStars = savedInstanceState.getInt("lorN");
+        myModel.pictures[7].currentLoadValue = savedInstanceState.getInt("lorL");
+
+        myModel.pictures[8].numStars = savedInstanceState.getInt("pupN");
+        myModel.pictures[8].currentLoadValue = savedInstanceState.getInt("pupL");
+
+        myModel.pictures[9].numStars = savedInstanceState.getInt("sleepyN");
+        myModel.pictures[9].currentLoadValue = savedInstanceState.getInt("sleepyL");
+
+        int cardViewIndex = 0;
+        for (int i = 0; i < myModel.pictures.length; ++i) {
+            if (myModel.pictures[i].currentLoadValue != 0 && myModel.pictures[i].numStars >= myModel.filterNumber) {
+                int cardImageID = view_id_array[cardViewIndex];
+                new DownloadImageFromInternet((ImageView) findViewById(cardImageID)) .execute(myModel.pictures[i].pictureURL);
+
+                // Update Rating
+                if (cardViewIndex == 0) {
+//                        myModel.onclick = false;
+                    myModel.onclick = false;
+                    myRatingBar1.setRating((float) myModel.pictures[i].numStars);
+                    myModel.onclick = true;
+//                        myModel.onclick = true;
+                }
+
+                if (cardViewIndex == 1) {
+                    myModel.onclick = false;
+                    myRatingBar2.setRating((float) myModel.pictures[i].numStars);
+                    myModel.onclick = true;
+                    Log.d("Does it get removed", "num stars: " + myModel.pictures[i].numStars);
+                }
+
+                if (cardViewIndex == 2) {
+                    myModel.onclick = false;
+                    myRatingBar3.setRating((float) myModel.pictures[i].numStars);
+                    myModel.onclick = true;
+                }
+
+                if (cardViewIndex == 3) {
+                    myModel.onclick = false;
+                    myRatingBar4.setRating((float) myModel.pictures[i].numStars);
+                    myModel.onclick = true;
+                }
+
+                if (cardViewIndex == 4) {
+                    myModel.onclick = false;
+                    myRatingBar5.setRating((float) myModel.pictures[i].numStars);
+                    myModel.onclick = true;
+                }
+
+                if (cardViewIndex == 5) {
+                    myModel.onclick = false;
+                    myRatingBar6.setRating((float) myModel.pictures[i].numStars);
+                    myModel.onclick = true;
+                }
+
+                if (cardViewIndex == 6) {
+                    myModel.onclick = false;
+                    myRatingBar7.setRating((float) myModel.pictures[i].numStars);
+                    myModel.onclick = true;
+                }
+
+                if (cardViewIndex == 7) {
+                    myModel.onclick = false;
+                    myRatingBar8.setRating((float) myModel.pictures[i].numStars);
+                    myModel.onclick = true;
+                }
+
+                if (cardViewIndex == 8) {
+                    myModel.onclick = false;
+                    myRatingBar9.setRating((float) myModel.pictures[i].numStars);
+                    myModel.onclick = true;
+                }
+
+                if (cardViewIndex == 9) {
+                    myModel.onclick = false;
+                    myRatingBar10.setRating((float) myModel.pictures[i].numStars);
+                    myModel.onclick = true;
+                }
+
+                cardViewIndex += 1;
+
+            }
+        }
+
+        myModel.onclick = false;
+        myRatingBar1.setRating((float) myModel.pictures[0].numStars);
+        myModel.onclick = true;
+        Log.d("Config", "Bunny Stars is: " + myModel.pictures[0].numStars);
 
     }
 
@@ -591,6 +793,8 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 filter_number = 5;
             }
+
+            myModel.filterNumber = filter_number;
 
             // Clear everything
             int image_id;
